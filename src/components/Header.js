@@ -25,7 +25,7 @@ const Header = () => {
                         onClick={() => {
                             logout(AUTH_ROUTE);
                         }}
-                        variant="outline-light"
+                        variant="dark"
                     >
                         Logout
                     </Button>

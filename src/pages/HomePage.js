@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
+import TodoList from '../components/TodoList';
 
 const HomePage = () => {
     return (
         <div>
-            <Header/> 
+            <Header/>
+            <TodoList /> 
         </div>
     );
 };

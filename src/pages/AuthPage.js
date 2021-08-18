@@ -10,6 +10,7 @@ import {
 import jwt from "jsonwebtoken";
 import jwtDecode from "jwt-decode";
 import { Context } from "..";
+import { toast } from "react-toastify";
 
 const AuthPage = () => {
   const location = useLocation();
@@ -38,16 +39,20 @@ const AuthPage = () => {
       history.push(TODO_LIST_ROUTE);
     } else {
       const token = localStorage.getItem('token');
-      if (!token) return;
+      if (!token) {
+        toast.dark("There are no authorized users");
+        return;
+      }
       const data = jwtDecode(token);
       for(var myUser in data.users){
         if(data.users[myUser].login === userName && data.users[myUser].password === userPassword) {
           user.setUser({ userName: data.users[myUser].login });
           user.setIsAuth(true);
           history.push(TODO_LIST_ROUTE);
-          break;
+          return;
         }
-      }    
+      }
+      toast.dark("Password or login is not correct");    
     }
   };
 
